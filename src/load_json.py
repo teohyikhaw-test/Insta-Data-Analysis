@@ -1,6 +1,6 @@
 import json
 import pandas
-from src.connect_mongo import *
+from src.connect_api import *
 
 def upload_json(tag,filename):
     client=connectmongo()
@@ -28,7 +28,7 @@ def upload_json(tag,filename):
         col.insert_one(data)
 
 
-def download_database(database,collection,filename):
+def download_json(database,collection,filename):
     client=connectmongo()
     db = client[database]
     col = db[collection]

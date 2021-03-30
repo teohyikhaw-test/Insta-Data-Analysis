@@ -9,4 +9,4 @@ from src.load_json import *
 #x = col.find_one()
 #print(x)
 
-download_database("hashtag","icmshk","test1.json")
+download_json("hashtag","icmshk","test1.json")

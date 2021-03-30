@@ -1,21 +1,20 @@
+from src.connect_api import *
 import json
 
-import http.client
+def insta_data(tag):
+    #Enter tag as "/user/username" or "/tag/hashtag/optional"
 
-conn = http.client.HTTPSConnection("instagramdimashirokovv1.p.rapidapi.com")
+    conn,headers=connectinstaapi()
 
-headers = {
-    'x-rapidapi-key': "8331ae32c8msh013d217412a1464p1dce59jsn6a38b434ff97",
-    'x-rapidapi-host': "InstagramdimashirokovV1.p.rapidapi.com"
-    }
+    conn.request("GET", tag, headers=headers)
+    #conn.request("GET", "/tag/"+hashtag+"/optional", headers=headers)
 
-hashtag="icmshk"
-#conn.request("GET", "/user/yikhaw_teoh", headers=headers)
-conn.request("GET", "/tag/"+hashtag+"/optional", headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    return (data)
 
-res = conn.getresponse()
-data = res.read()
-
+###sample usage
+data=insta_data("/user/graduan")
 json_dictionary = json.loads(data.decode("utf-8"))
 
 #print(data.decode("utf-8"))
